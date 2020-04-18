@@ -1,1 +1,1 @@
-A git repo to record my journey with leedcode.
+A git repo to record my journey with leetcode.
