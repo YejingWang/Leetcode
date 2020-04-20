@@ -62,40 +62,60 @@ public:
 		std::vector<int> res(nums.size());
 		for (size_t i = 0; i < nums.size(); ++i) {
 			res[i] = resMap[nums[i]];
-		}
+		}*/
 
-		return res;*/
-
-		// 2. sort, count and sum
+		// 2. count and sum using fixed-size arrays; slightly faster than 1
 		// Time complexity:		O(N)
 		// Space complexity:	O(N)
-		std::vector<int> tmp(nums.begin(), nums.end());
+		int cntArr[500] = { 0 };
+		for (size_t i = 0; i < nums.size(); ++i) {
+			++cntArr[nums[i]];
+		}
+
+		int resArr[500] = { 0 };
+		int prevCnt = 0;
+		for (size_t i = 0; i < 500; ++i) {
+			resArr[i] = prevCnt;
+			prevCnt += cntArr[i];
+		}
+
+		std::vector<int> res(nums.size());
+		for (size_t i = 0; i < nums.size(); ++i) {
+			res[i] = resArr[nums[i]];
+		}
+
+		return res;
+
+		// 3. sort, count + sum
+		// Time complexity:		O(NlgN)
+		// Space complexity:	O(N)
+		/*std::vector<int> tmp(nums.begin(), nums.end());
 		std::sort(tmp.begin(), tmp.end());
 		int cnt = 0;
+		int accumCnt = 0;
 		int prevNum = -1;
 		std::unordered_map<int, int> mp;
 		for (size_t i = 0; i < tmp.size(); ++i) {
 			if (tmp[i] != prevNum) {
-				mp[prevNum] = cnt;
+				mp[prevNum] = accumCnt;
 				prevNum = tmp[i];
-				cnt = 1;
+				accumCnt += cnt;
+				cnt = 0;
 			}
-			else {
-				++cnt;
-			}
+			++cnt;
 		}
-		mp[prevNum] = cnt;
+		mp[prevNum] = accumCnt;
 
 		for (size_t i = 0; i < nums.size(); ++i) {
 			tmp[i] = mp[nums[i]];
 		}
 
-		return tmp;
+		return tmp;*/
 	}
 };
 
 /*
 Tips:
-	1.std::vector.insert(pos, n, val)
-	2.std::vector.reserve() only changes the capacity() (not the size()) of the vector 
+	1.can use fixed-size arrays when we know the upper bound
+	2.int arr[n] = { val } can be used to initialize an array with n same values
 */
