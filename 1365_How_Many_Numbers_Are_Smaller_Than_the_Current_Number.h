@@ -87,7 +87,7 @@ public:
 		return res;
 
 		// 3. sort, count + sum
-		// Time complexity:		O(NlgN)
+		// Time complexity:		O(NlogN)
 		// Space complexity:	O(N)
 		/*std::vector<int> tmp(nums.begin(), nums.end());
 		std::sort(tmp.begin(), tmp.end());

@@ -39,7 +39,7 @@ public:
 		int product = 1;
 
 		// 1.division
-		// Time complexity:     O(lg(n))
+		// Time complexity:     O(log(N))
 		// Space complexity:    O(1)
 		/*int curDigit = 0;
 		while(n != 0) {
@@ -51,7 +51,7 @@ public:
 
 
 		// 2.covert n to string
-		// Time complexity:     O(lg(n)) ?
+		// Time complexity:     O(log(N)) ?
 		// Space complexity:    O(1)
 		std::string str = std::to_string(n);
 		int curDigit = 0;

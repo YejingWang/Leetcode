@@ -54,7 +54,7 @@ public:
 		}*/
 
 		// 3. Betterer traversal
-		// Time complexity:		O(lg(j) * s) ?
+		// Time complexity:		O(log(j) * s) ?
 		// Space complexity:	O(1)
 		for (char& s : S) {
 			if (std::find(J.begin(), J.end(), s) != J.end()) {
