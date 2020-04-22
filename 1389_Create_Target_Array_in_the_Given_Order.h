@@ -67,6 +67,8 @@ public:
 		}
 
 		// 2. insert manually
+		// TO-DO: Suppose the intputs are two int[]
+
 		return target;
 	}
 };
