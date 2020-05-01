@@ -72,7 +72,7 @@ public:
 		// 3. Betterer brute force traversal
 		// Time complexity:		O(lgN*M)
 		// Space complexity:	O(1)
-		int cnt = 0, posRow = grid.size(), posCol = grid[0].size();
+		/*int cnt = 0, posRow = grid.size(), posCol = grid[0].size();
 		for (size_t i = 0; i < posRow; ++i) {
 			for (size_t j = 0; j < posCol; ++j) {
 				if (grid[i][j] < 0) {
@@ -82,11 +82,32 @@ public:
 				}
 			}
 		}
-		return cnt;
+		return cnt;*/
 
 		// 4. Binary search
 		// Time complexity:		O(N*M)
 		// Space complexity:	O(1)
+
+		// 5.Traverse from upper-right to lower-left
+		// Time complexity:		O(N+M)
+		// Space complexity:	O(1)
+		int cnt = 0;
+		int colNo = grid[0].size() - 1;
+		int posCol = colNo;
+		for (size_t i = 0; i < grid.size(); ++i) {
+			for (int j = posCol; j >= 0; --j) {
+				if (grid[i][j] >= 0) {
+					cnt += (colNo - j);
+					posCol = j;
+					break;
+				}
+				else if (j == 0) {
+					cnt += (colNo + 1);
+				}
+			}
+		}
+		return cnt;
+	}
 };
 
 /*
