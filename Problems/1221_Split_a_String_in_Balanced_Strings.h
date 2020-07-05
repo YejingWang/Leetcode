@@ -44,46 +44,46 @@ s[i] = 'L' or 'R'
 
 class Solution {
 public:
-	int balancedStringSplit(std::string s) {
-		// 1. greedy search
-		// Time complexity:     O(N)
-		// Space complexity:    O(1)
-		/*int cnt = 0, lCnt = 0, rCnt = 0;
-		for (char& c : s) {
-			if (c == 'L') {
-				++lCnt;
-			}
-			else {
-				++rCnt;
-			}
-			if (lCnt == rCnt) {
-				++cnt;
-				lCnt = 0;
-				rCnt = 0;
-			}
-		}*/
+    int balancedStringSplit(std::string s) {
+        // 1. greedy search
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*int cnt = 0, lCnt = 0, rCnt = 0;
+        for (char& c : s) {
+            if (c == 'L') {
+                ++lCnt;
+            }
+            else {
+                ++rCnt;
+            }
+            if (lCnt == rCnt) {
+                ++cnt;
+                lCnt = 0;
+                rCnt = 0;
+            }
+        }*/
 
-		// 2. better greedy search
-		// Time complexity:     O(N)
-		// Space complexity:    O(1)
-		int cnt = 0, charCnt = 0;
-		for (char& c : s) {
-			if (c == 'L') {
-				++charCnt;
-			}
-			else {
-				--charCnt;
-			}
-			if (charCnt == 0) {
-				++cnt;
-			}
-		}
+        // 2. better greedy search
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        int cnt = 0, charCnt = 0;
+        for (char& c : s) {
+            if (c == 'L') {
+                ++charCnt;
+            }
+            else {
+                --charCnt;
+            }
+            if (charCnt == 0) {
+                ++cnt;
+            }
+        }
 
-		return cnt;
-	}
+        return cnt;
+    }
 };
 
 /*
 Tips:
-	1. since each char is either L or R, we can use one variable to take count
+    1. since each char is either L or R, we can use one variable to take count
 */

@@ -30,38 +30,38 @@ The given address is a valid IPv4 address.
 
 class Solution {
 public:
-	std::string defangIPaddr(std::string address) {
-		// 1.search from front to end
-		// Time complexity:		O(N)
-		// Space complexity:	O(N)
-		/*for (size_t i = 0; i < address.length(); ++i){
-			if (address[i] == '.'){
-				address.replace(i, 1, "[.]");
-				++i;
-			}
-		}*/
+    std::string defangIPaddr(std::string address) {
+        // 1.search from front to end
+        // Time complexity:		O(N)
+        // Space complexity:	O(N)
+        /*for (size_t i = 0; i < address.length(); ++i){
+            if (address[i] == '.'){
+                address.replace(i, 1, "[.]");
+                ++i;
+            }
+        }*/
 
-		//  2. search from end to front to avoid index changes
-		// Time complexity:		O(N)
-		// Space complexity:	O(N)
-		for (int i = address.length() - 1; i >= 0; --i) {
-			if (address[i] == '.') {
-				address.replace(i, 1, "[.]");
-			}
-		}
+        //  2. search from end to front to avoid index changes
+        // Time complexity:		O(N)
+        // Space complexity:	O(N)
+        for (int i = address.length() - 1; i >= 0; --i) {
+            if (address[i] == '.') {
+                address.replace(i, 1, "[.]");
+            }
+        }
 
-		return address;
+        return address;
 
-		// 3. use regex_replace
-		// Time complexity:		?
-		// Space complexity:	?
-		//return std::regex_replace(address, std::regex("[.]"), "[.]");
-	}
+        // 3. use regex_replace
+        // Time complexity:     ?
+        // Space complexity:    ?
+        //return std::regex_replace(address, std::regex("[.]"), "[.]");
+    }
 };
 
 /*
 Tips:
-	1.elements of a std::string are chars
-	2.std::string.replace(startPos, length, newStr)
-	3.TO-DO: std::regex_replace()
+    1.elements of a std::string are chars
+    2.std::string.replace(startPos, length, newStr)
+    3.TO-DO: std::regex_replace()
 */

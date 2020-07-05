@@ -49,42 +49,42 @@ S is a valid parentheses string
 
 class Solution {
 public:
-	std::string removeOuterParentheses(std::string S) {
-		std::string res;
-		
-		// 1.Use stack and std::string::substr
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		std::stack<char> stk;
-		bool primitive = false;
-		int pos = 0;
-		for (size_t i = 0; i < S.length(); ++i) {
-			if (S[i] == '(') {
-				primitive = !stk.empty();
-				stk.push(S[i]);
-			}
-			else {
-				stk.pop();
-				if (stk.empty()) {
-					if (primitive) {
-						res += S.substr(pos + 1, i - pos - 1);
-					}
-					pos = i + 1;
-				}
-			}
-		}
+    std::string removeOuterParentheses(std::string S) {
+        std::string res;
 
-		// 2.Count open parentheses (primitive parenthes contain at least one '(')
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		/*int opened = 0;
-		for (char c : S) {
-			if (c == '(' && opened++ > 0) res += c;
-			if (c == ')' && opened-- > 1) res += c;
-		}*/
+        // 1.Use stack and std::string::substr
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        std::stack<char> stk;
+        bool primitive = false;
+        int pos = 0;
+        for (size_t i = 0; i < S.length(); ++i) {
+            if (S[i] == '(') {
+                primitive = !stk.empty();
+                stk.push(S[i]);
+            }
+            else {
+                stk.pop();
+                if (stk.empty()) {
+                    if (primitive) {
+                        res += S.substr(pos + 1, i - pos - 1);
+                    }
+                    pos = i + 1;
+                }
+            }
+        }
 
-		return res;
-	}
+        // 2.Count open parentheses (primitive parenthes contain at least one '(')
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*int opened = 0;
+        for (char c : S) {
+            if (c == '(' && opened++ > 0) res += c;
+            if (c == ')' && opened-- > 1) res += c;
+        }*/
+
+        return res;
+    }
 };
 
 /*

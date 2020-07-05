@@ -26,27 +26,27 @@ Output: "lovely"
 
 class Solution {
 public:
-	std::string toLowerCase(std::string str) {
-		// 1.Traversal
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		/*for (char& c : str) {
-			if (c >= 'A' && c <= 'Z') {
-				c += ('a'-'A');
-			}
-		}*/
+    std::string toLowerCase(std::string str) {
+        // 1.Traversal
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        /*for (char& c : str) {
+            if (c >= 'A' && c <= 'Z') {
+                c += ('a'-'A');
+            }
+        }*/
 
-		// 2.Use std::tolower()
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		for (char& c : str) {
-			if (c >= 'A' && c <= 'Z') {
-				c = tolower(c);
-			}
-		}
+        // 2.Use std::tolower()
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        for (char& c : str) {
+            if (c >= 'A' && c <= 'Z') {
+                c = tolower(c);
+            }
+        }
 
-		return str;
-	}
+        return str;
+    }
 };
 
 /*

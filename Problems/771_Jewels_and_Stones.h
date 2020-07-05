@@ -23,61 +23,60 @@ The characters in J are distinct.
 */
 
 #include <string>
+#include <unordered_set>
 
 class Solution {
 public:
-	int numJewelsInStones(std::string J, std::string S) {
-		int count = 0;
+    int numJewelsInStones(std::string J, std::string S) {
+        int count = 0;
 
-		// 1. Traversal
-		// Time complexity:		O(j * s)
-		// Space complexity:	O(1)
-		/*for (char s : S)
-		{
-			for (char j : J)
-			{
-				if (s == j)
-					++count;
-			}
-		}*/
+        // 1. Traversal
+        // Time complexity:		O(j * s)
+        // Space complexity:	O(1)
+        /*for (char s : S) {
+            for (char j : J) {
+                if (s == j) {
+                    ++count;
+                }
+            }
+        }*/
 
-		// 2. Better traversal
-		// Time complexity:		O(j * s)
-		// Space complexity:	O(1)
-		/*for (char j : J)
-		{
-			for (char s : S)
-			{
-				if (s == j)
-					++count;
-			}
-		}*/
+        // 2. Better traversal
+        // Time complexity:		O(j * s)
+        // Space complexity:	O(1)
+        /*for (char j : J) {
+            for (char s : S) {
+                if (s == j) {
+                    ++count;
+                }
+            }
+        }*/
 
-		// 3. Betterer traversal
-		// Time complexity:		O(log(j) * s) ?
-		// Space complexity:	O(1)
-		for (char& s : S) {
-			if (std::find(J.begin(), J.end(), s) != J.end()) {
-				++count;
-			}
-		}
+        // 3. Betterer traversal
+        // Time complexity:     O(log(j) * s) ?
+        // Space complexity:    O(1)
+        for (char& s : S) {
+            if (std::find(J.begin(), J.end(), s) != J.end()) {
+                ++count;
+            }
+        }
 
-		// 4. Use unordered_set
-		// Time complexity:		O(j + s)
-		// Space complexity:	O(j)
-		/*std::unordered_set<char> jSet(J.begin(), J.end());
-		for (char s : S)
-		{
-			if (jSet.count(s))
-				count++;
-		}*/
+        // 4. Use unordered_set
+        // Time complexity:		O(j + s)
+        // Space complexity:	O(j)
+        /*std::unordered_set<char> jSet(J.begin(), J.end());
+        for (char s : S) {
+            if (jSet.count(s)) {
+                count++;
+            }
+        }*/
 
-		return count;
-	}
+        return count;
+    }
 };
 
 /*
 Tips:
-	1.std::unordered_set can be constructed with two iterators (range), O(N) in time
-	2.std::unordered_set.count() is O(1) in time
+    1.std::unordered_set can be constructed with two iterators (range), O(N) in time
+    2.std::unordered_set.count() is O(1) in time
 */
