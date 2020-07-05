@@ -42,36 +42,36 @@ num's digits are 6 or 9.
 
 class Solution {
 public:
-	int maximum69Number(int num) {
-		// 1.Convert to string
-		// Time complexity:		O(N)
-		// Space complexity:	O(N)
-		/*std::string str = std::to_string(num);
-		for (char& c : str) {
-			if (c == '6') {
-				c = '9';
-				break;
-			}
-		}
-		return stoi(str);*/
+    int maximum69Number(int num) {
+        // 1.Convert to string
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::string str = std::to_string(num);
+        for (char& c : str) {
+            if (c == '6') {
+                c = '9';
+                break;
+            }
+        }
+        return stoi(str);*/
 
-		// 2.Division
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		int pos = 1;
-		int compensate = 0;
-		int mod = 0;
-		int tmp = num;
-		while (tmp != 0) {
-			mod = tmp % 10;
-			if (mod == 6) {
-				compensate = pos;
-			}
-			pos *= 10;
-			tmp /= 10;
-		}
-		return num + 3 * compensate;
-	}
+        // 2.Division
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        int pos = 1;
+        int compensate = 0;
+        int mod = 0;
+        int tmp = num;
+        while (tmp != 0) {
+            mod = tmp % 10;
+            if (mod == 6) {
+                compensate = pos;
+            }
+            pos *= 10;
+            tmp /= 10;
+        }
+        return num + 3 * compensate;
+    }
 };
 
 /*

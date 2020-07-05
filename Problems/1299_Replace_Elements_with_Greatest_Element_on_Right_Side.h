@@ -27,36 +27,36 @@ Constraints:
 
 class Solution {
 public:
-	std::vector<int> replaceElements(std::vector<int>& arr) {
-		// 1. Traverse backwards and keep track of the max
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		/*int max = arr.back();
-		int tmp = -1;
-		for (int i = arr.size() - 1; i >= 0; --i) {
-			tmp = max;
+    std::vector<int> replaceElements(std::vector<int>& arr) {
+        // 1. Traverse backwards and keep track of the max
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        /*int max = arr.back();
+        int tmp = -1;
+        for (int i = arr.size() - 1; i >= 0; --i) {
+            tmp = max;
 
-			if (arr[i] > max) {
-				max = arr[i];
-			}
-			if (i == arr.size() - 1) {
-				arr[i] = -1;
-			}
-			else {
-				arr[i] = tmp;
-			}
-		}*/
+            if (arr[i] > max) {
+                max = arr[i];
+            }
+            if (i == arr.size() - 1) {
+                arr[i] = -1;
+            }
+            else {
+                arr[i] = tmp;
+            }
+        }*/
 
-		// 2. Use std::exchange()
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		int max = -1;
-		for (int i = arr.size() - 1; i >= 0; --i) {
-			max = std::max(max, std::exchange(arr[i], max));
-		}
+        // 2. Use std::exchange()
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        int max = -1;
+        for (int i = arr.size() - 1; i >= 0; --i) {
+            max = std::max(max, std::exchange(arr[i], max));
+        }
 
-		return arr;
-	}
+        return arr;
+    }
 };
 
 /*

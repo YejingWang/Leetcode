@@ -35,16 +35,16 @@ Constraints:
 
 class Solution {
 public:
-	std::string generateTheString(int n) {
-		// 1.Simple observation
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		std::string s(n, 'a');
-		if (n % 2 == 0) {
-			s[n - 1] = 'b';
-		}
-		return s;
-	}
+    std::string generateTheString(int n) {
+        // 1.Simple observation
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        std::string s(n, 'a');
+        if (n % 2 == 0) {
+            s[n - 1] = 'b';
+        }
+        return s;
+    }
 };
 
 /*

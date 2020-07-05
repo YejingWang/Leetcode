@@ -43,79 +43,79 @@ Constraints:
 
 class Solution {
 public:
-	std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums) {
-		// 1. count and sum
-		// Time complexity:		O(N)
-		// Space complexity:	O(N)
-		/*std::map<int, int> cntMap;
-		for (size_t i = 0; i < nums.size(); ++i) {
-			++cntMap[nums[i]];
-		}
+    std::vector<int> smallerNumbersThanCurrent(std::vector<int>& nums) {
+        // 1. count and sum
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::map<int, int> cntMap;
+        for (size_t i = 0; i < nums.size(); ++i) {
+            ++cntMap[nums[i]];
+        }
 
-		std::map<int, int> resMap;
-		int prevCnt = 0;
-		for (auto it = cntMap.begin(); it != cntMap.end(); ++it) {
-			resMap[it->first] = prevCnt;
-			prevCnt += it->second;
-		}
+        std::map<int, int> resMap;
+        int prevCnt = 0;
+        for (auto it = cntMap.begin(); it != cntMap.end(); ++it) {
+            resMap[it->first] = prevCnt;
+            prevCnt += it->second;
+        }
 
-		std::vector<int> res(nums.size());
-		for (size_t i = 0; i < nums.size(); ++i) {
-			res[i] = resMap[nums[i]];
-		}*/
+        std::vector<int> res(nums.size());
+        for (size_t i = 0; i < nums.size(); ++i) {
+            res[i] = resMap[nums[i]];
+        }*/
 
-		// 2. count and sum using fixed-size arrays; slightly faster than 1
-		// Time complexity:		O(N)
-		// Space complexity:	O(N)
-		int cntArr[500] = { 0 };
-		for (size_t i = 0; i < nums.size(); ++i) {
-			++cntArr[nums[i]];
-		}
+        // 2. count and sum using fixed-size arrays; slightly faster than 1
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        int cntArr[500] = { 0 };
+        for (size_t i = 0; i < nums.size(); ++i) {
+            ++cntArr[nums[i]];
+        }
 
-		int resArr[500] = { 0 };
-		int prevCnt = 0;
-		for (size_t i = 0; i < 500; ++i) {
-			resArr[i] = prevCnt;
-			prevCnt += cntArr[i];
-		}
+        int resArr[500] = { 0 };
+        int prevCnt = 0;
+        for (size_t i = 0; i < 500; ++i) {
+            resArr[i] = prevCnt;
+            prevCnt += cntArr[i];
+        }
 
-		std::vector<int> res(nums.size());
-		for (size_t i = 0; i < nums.size(); ++i) {
-			res[i] = resArr[nums[i]];
-		}
+        std::vector<int> res(nums.size());
+        for (size_t i = 0; i < nums.size(); ++i) {
+            res[i] = resArr[nums[i]];
+        }
 
-		return res;
+        return res;
 
-		// 3. sort, count + sum
-		// Time complexity:		O(NlogN)
-		// Space complexity:	O(N)
-		/*std::vector<int> tmp(nums.begin(), nums.end());
-		std::sort(tmp.begin(), tmp.end());
-		int cnt = 0;
-		int accumCnt = 0;
-		int prevNum = -1;
-		std::unordered_map<int, int> mp;
-		for (size_t i = 0; i < tmp.size(); ++i) {
-			if (tmp[i] != prevNum) {
-				mp[prevNum] = accumCnt;
-				prevNum = tmp[i];
-				accumCnt += cnt;
-				cnt = 0;
-			}
-			++cnt;
-		}
-		mp[prevNum] = accumCnt;
+        // 3. sort, count + sum
+        // Time complexity:     O(NlogN)
+        // Space complexity:    O(N)
+        /*std::vector<int> tmp(nums.begin(), nums.end());
+        std::sort(tmp.begin(), tmp.end());
+        int cnt = 0;
+        int accumCnt = 0;
+        int prevNum = -1;
+        std::unordered_map<int, int> mp;
+        for (size_t i = 0; i < tmp.size(); ++i) {
+            if (tmp[i] != prevNum) {
+                mp[prevNum] = accumCnt;
+                prevNum = tmp[i];
+                accumCnt += cnt;
+                cnt = 0;
+            }
+            ++cnt;
+        }
+        mp[prevNum] = accumCnt;
 
-		for (size_t i = 0; i < nums.size(); ++i) {
-			tmp[i] = mp[nums[i]];
-		}
+        for (size_t i = 0; i < nums.size(); ++i) {
+            tmp[i] = mp[nums[i]];
+        }
 
-		return tmp;*/
-	}
+        return tmp;*/
+    }
 };
 
 /*
 Tips:
-	1.can use fixed-size arrays when we know the upper bound
-	2.int arr[n] = { val } can be used to initialize an array with n same values
+    1.can use fixed-size arrays when we know the upper bound
+    2.int arr[n] = { val } can be used to initialize an array with n same values
 */

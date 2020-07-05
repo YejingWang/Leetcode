@@ -39,72 +39,72 @@ Constraints:
 
 class Solution {
 public:
-	int oddCells(int n, int m, std::vector<std::vector<int>>& indices) {
-		// 1. Brute force traversal
-		// Time complexity:		O(I*(N+M) + N*M)
-		// Space complexity:	O(N*M)
-		/*int res = 0;
-		std::vector<std::vector<int>> matrix(n, std::vector<int>(m, 0));
-		for (size_t i = 0; i < indices.size(); ++i) {
-			for (size_t j = 0; j < m; ++j) {
-				++matrix[indices[i][0]][j];
+    int oddCells(int n, int m, std::vector<std::vector<int>>& indices) {
+        // 1. Brute force traversal
+        // Time complexity:		O(I*(N+M) + N*M)
+        // Space complexity:	O(N*M)
+        /*int res = 0;
+        std::vector<std::vector<int>> matrix(n, std::vector<int>(m, 0));
+        for (size_t i = 0; i < indices.size(); ++i) {
+            for (size_t j = 0; j < m; ++j) {
+                ++matrix[indices[i][0]][j];
 			}
-			for (size_t j = 0; j < n; ++j) {
-				++matrix[j][indices[i][1]];
-			}
-		}
-		for (size_t i = 0; i < n; ++i) {
-			for (size_t j = 0; j < m; ++j) {
-				if (matrix[i][j] % 2 != 0) {
-					++res;
-				}
-			}
-		}
+            for (size_t j = 0; j < n; ++j) {
+                ++matrix[j][indices[i][1]];
+            }
+        }
+        for (size_t i = 0; i < n; ++i) {
+            for (size_t j = 0; j < m; ++j) {
+                if (matrix[i][j] % 2 != 0) {
+                    ++res;
+                }
+            }
+        }
 
-		return res;*/
+        return res;*/
 
-		// 2.Logic deduction + brute force
-		// Time complexity:	O(I+N+M)
-		// Space complexity:	O(N*M)
-		/*std::vector<bool> row(n, false);
-		std::vector<bool> col(m, false);
-		for (size_t i = 0; i < indices.size(); ++i) {
-			row[indices[i][0]] = !row[indices[i][0]];
-			col[indices[i][1]] = !col[indices[i][1]];
-		}
+        // 2.Logic deduction + brute force
+        // Time complexity:	O(I+N+M)
+        // Space complexity:	O(N*M)
+        /*std::vector<bool> row(n, false);
+        std::vector<bool> col(m, false);
+        for (size_t i = 0; i < indices.size(); ++i) {
+            row[indices[i][0]] = !row[indices[i][0]];
+            col[indices[i][1]] = !col[indices[i][1]];
+        }
 
-		int res = 0;
-		for (size_t i = 0; i < n; ++i) {
-			for (size_t j = 0; j < m; ++j) {
-				if (row[i] ^ col[j]) {
-					++res;
-				}
-			}
-		}
-		return res;*/
+        int res = 0;
+        for (size_t i = 0; i < n; ++i) {
+            for (size_t j = 0; j < m; ++j) {
+                if (row[i] ^ col[j]) {
+                    ++res;
+                }
+            }
+        }
+        return res;*/
 
-		// 3.Logic deduction
-		// Time complexity:		O(I+N+M)
-		// Space complexity:	O(N+M)
-		std::vector<bool> row(n, false);
-		std::vector<bool> col(m, false);
-		for (size_t i = 0; i < indices.size(); ++i) {
-			row[indices[i][0]] = !row[indices[i][0]];
-			col[indices[i][1]] = !col[indices[i][1]];
-		}
+        // 3.Logic deduction
+        // Time complexity:		O(I+N+M)
+        // Space complexity:	O(N+M)
+        std::vector<bool> row(n, false);
+        std::vector<bool> col(m, false);
+        for (size_t i = 0; i < indices.size(); ++i) {
+            row[indices[i][0]] = !row[indices[i][0]];
+            col[indices[i][1]] = !col[indices[i][1]];
+        }
 
-		int rCnt = 0;
-		for (size_t i = 0; i < n; ++i) {
-			rCnt += row[i];
-		}
+        int rCnt = 0;
+        for (size_t i = 0; i < n; ++i) {
+            rCnt += row[i];
+        }
 
-		int cCnt = 0;
-		for (size_t i = 0; i < m; ++i) {
-			cCnt += col[i];
-		}
+        int cCnt = 0;
+        for (size_t i = 0; i < m; ++i) {
+            cCnt += col[i];
+        }
 
-		return rCnt * m + cCnt * n - 2 * rCnt * cCnt;
-	}
+        return rCnt * m + cCnt * n - 2 * rCnt * cCnt;
+    }
 };
 
 /*

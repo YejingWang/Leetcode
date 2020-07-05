@@ -43,30 +43,30 @@ Constraints:
 
 class Solution {
 public:
-	std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies) {
-		// 1.Use std::max_element
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		/*int max = *std::max_element(candies.begin(), candies.end());*/
+    std::vector<bool> kidsWithCandies(std::vector<int>& candies, int extraCandies) {
+        // 1.Use std::max_element
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*int max = *std::max_element(candies.begin(), candies.end());*/
 
-		// 2.implement our own "max"
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		int max = 0;
-		for (size_t i = 0; i < candies.size(); ++i) {
-			max = candies[i] > max ? candies[i] : max;
-		}
+        // 2.implement our own "max"
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        int max = 0;
+        for (size_t i = 0; i < candies.size(); ++i) {
+            max = candies[i] > max ? candies[i] : max;
+        }
 
-		std::vector<bool> res(candies.size());
-		for (size_t i = 0; i < res.size(); ++i) {
-			res[i] = (candies[i] + extraCandies >= max);
-		}
-		return res;
-	}
+        std::vector<bool> res(candies.size());
+        for (size_t i = 0; i < res.size(); ++i) {
+            res[i] = (candies[i] + extraCandies >= max);
+        }
+        return res;
+    }
 };
 
 /*
 Tips:
-	1.use std::max_element to find the largest element in range (returns an interator);
-	2.std::max is not suitable for this problem
+    1.use std::max_element to find the largest element in range (returns an interator);
+    2.std::max is not suitable for this problem
 */

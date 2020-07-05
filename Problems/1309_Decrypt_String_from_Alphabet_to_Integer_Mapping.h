@@ -44,45 +44,45 @@ s will be valid string such that mapping is always possible.
 
 class Solution {
 public:
-	std::string freqAlphabets(std::string s) {
-		// 1.Traverse backwards + add letters to the front
-		// Time complexity:		O(N^2)
-		// Space complexity:	O(1)
-		/*std::string res = "";
-		int pos = s.length() - 1;
-		while (pos >= 0) {
-			if (s[pos] == '#') {
-				res = static_cast<char>(std::stoi(s.substr(pos - 2, 2)) - 10 + 'j') + res;
-				pos -= 3;
-			}
-			else {
-				res = static_cast<char>(s[pos] - '1' + 'a') + res;
-				--pos;
-			}
-		}
-		return res;*/
+    std::string freqAlphabets(std::string s) {
+        // 1.Traverse backwards + add letters to the front
+        // Time complexity:		O(N^2)
+        // Space complexity:	O(1)
+        /*std::string res = "";
+        int pos = s.length() - 1;
+        while (pos >= 0) {
+            if (s[pos] == '#') {
+                res = static_cast<char>(std::stoi(s.substr(pos - 2, 2)) - 10 + 'j') + res;
+                pos -= 3;
+            }
+            else {
+                res = static_cast<char>(s[pos] - '1' + 'a') + res;
+                --pos;
+            }
+        }
+        return res;*/
 
-		// 2.Traverse backwards + resize res in advance
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		size_t size = s.length();
-		std::string res;
-		res.resize(size);
-		int pos = s.length() - 1;
-		int resPos = pos;
-		while (pos >= 0) {
-			if (s[pos] == '#') {
-				res[resPos] = static_cast<char>(std::stoi(s.substr(pos - 2, 2)) - 10 + 'j');
-				pos -= 3;
-			}
-			else {
-				res[resPos] = static_cast<char>(s[pos] - '1' + 'a');
-				--pos;
-			}
-			--resPos;
-		}
-		return res.substr(resPos + 1, size - resPos - 1);
-	}
+        // 2.Traverse backwards + resize res in advance
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        size_t size = s.length();
+        std::string res;
+        res.resize(size);
+        int pos = s.length() - 1;
+        int resPos = pos;
+        while (pos >= 0) {
+            if (s[pos] == '#') {
+                res[resPos] = static_cast<char>(std::stoi(s.substr(pos - 2, 2)) - 10 + 'j');
+                pos -= 3;
+            }
+            else {
+                res[resPos] = static_cast<char>(s[pos] - '1' + 'a');
+                --pos;
+            }
+            --resPos;
+        }
+        return res.substr(resPos + 1, size - resPos - 1);
+    }
 };
 
 /*

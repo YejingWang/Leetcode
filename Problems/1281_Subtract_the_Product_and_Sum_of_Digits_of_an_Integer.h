@@ -34,36 +34,36 @@ Constraints:
 
 class Solution {
 public:
-	int subtractProductAndSum(int n) {
-		int sum = 0;
-		int product = 1;
+    int subtractProductAndSum(int n) {
+        int sum = 0;
+        int product = 1;
 
-		// 1.division
-		// Time complexity:     O(log(N))
-		// Space complexity:    O(1)
-		/*int curDigit = 0;
-		while(n != 0) {
-			curDigit = n % 10;
-			sum += curDigit;
-			product *= curDigit;
-			n /= 10;
-		}*/
+        // 1.division
+        // Time complexity:     O(log(N))
+        // Space complexity:    O(1)
+        /*int curDigit = 0;
+        while(n != 0) {
+            curDigit = n % 10;
+            sum += curDigit;
+            product *= curDigit;
+            n /= 10;
+        }*/
 
 
-		// 2.covert n to string
-		// Time complexity:     O(log(N)) ?
-		// Space complexity:    O(1)
-		std::string str = std::to_string(n);
-		int curDigit = 0;
-		for (char c : str) {
-			//curDigit = std::atoi(&c);		// throws run-time error in leetcode but compiles in vs 2017
-			curDigit = c - '0';
-			sum += curDigit;
-			product *= curDigit;
-		}
+        // 2.covert n to string
+        // Time complexity:     O(log(N)) ?
+        // Space complexity:    O(1)
+        std::string str = std::to_string(n);
+        int curDigit = 0;
+        for (char c : str) {
+            //curDigit = std::atoi(&c);		// throws run-time error in leetcode but compiles in vs 2017
+            curDigit = c - '0';
+            sum += curDigit;
+            product *= curDigit;
+        }
 
-		return product - sum;
-	}
+        return product - sum;
+    }
 };
 
 /*

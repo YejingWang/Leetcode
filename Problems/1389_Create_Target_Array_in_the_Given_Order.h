@@ -55,26 +55,26 @@ nums.length == index.length
 
 class Solution {
 public:
-	std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index) {
-		std::vector<int> target;
+    std::vector<int> createTargetArray(std::vector<int>& nums, std::vector<int>& index) {
+        std::vector<int> target;
 
-		// 1.use std::vector.insert()
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		for (size_t i = 0; i < nums.size(); ++i) {
-			auto it = target.begin();
-			target.insert(it + index[i], nums[i]);
-		}
+        // 1.use std::vector.insert()
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        for (size_t i = 0; i < nums.size(); ++i) {
+            auto it = target.begin();
+            target.insert(it + index[i], nums[i]);
+        }
 
-		// 2. insert manually
-		// TO-DO: Suppose the intputs are two int[]
+        // 2. insert manually
+        // TO-DO: Suppose the intputs are two int[]
 
-		return target;
-	}
+        return target;
+    }
 };
 
 /*
 Tips:
-	1.can use fixed-size arrays when we know the upper bound
-	2.int arr[n] = { val } can be used to initialize an array with n same values
+    1.can use fixed-size arrays when we know the upper bound
+    2.int arr[n] = { val } can be used to initialize an array with n same values
 */

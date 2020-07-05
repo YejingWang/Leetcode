@@ -37,35 +37,35 @@ Constraints:
 
 class Solution {
 public:
-	int findNumbers(std::vector<int>& nums) {
-		int res = 0;
+    int findNumbers(std::vector<int>& nums) {
+        int res = 0;
 
-		// 1.
-		// Time complexity:     O(N * L)
-		// Space complexity:    O(1)
-		for (size_t i = 0; i < nums.size(); ++i) {
-			int digits = 0;
-			while (nums[i] != 0) {
-				nums[i] /= 10;
-				++digits;
-			}
-			if (digits % 2 == 0) {
-				++res;
-			}
-		}
+        // 1.
+        // Time complexity:     O(N * L)
+        // Space complexity:    O(1)
+        for (size_t i = 0; i < nums.size(); ++i) {
+            int digits = 0;
+            while (nums[i] != 0) {
+                nums[i] /= 10;
+                ++digits;
+            }
+            if (digits % 2 == 0) {
+                ++res;
+            }
+        }
 
-		// 2.
-		// Time complexity:     ?
-		// Space complexity:    O(1)
-		/*for (size_t i = 0; i < nums.size(); ++i) {
-			std::string str = std::to_string(nums[i]);
-			if (str.length() % 2  == 0) {
-				++res;
-			}
-		}*/
+        // 2.
+        // Time complexity:     ?
+        // Space complexity:    O(1)
+        /*for (size_t i = 0; i < nums.size(); ++i) {
+            std::string str = std::to_string(nums[i]);
+            if (str.length() % 2  == 0) {
+                ++res;
+            }
+        }*/
 
-		return res;
-	}
+        return res;
+    }
 };
 
 /*

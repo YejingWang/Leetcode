@@ -39,16 +39,16 @@ points[i].length == 2
 
 class Solution {
 public:
-	int minTimeToVisitAllPoints(std::vector<std::vector<int>>& points) {
-		// 1. greedy search
-		// Time complexity:		O(N)
-		// Space complexity:	O(1)
-		int time = 0;
-		for (size_t i = 0; i < points.size() - 1; ++i) {
-			time += std::max(std::abs(points[i + 1][1] - points[i][1]), std::abs(points[i + 1][0] - points[i][0]));
-		}
-		return time;
-	}
+    int minTimeToVisitAllPoints(std::vector<std::vector<int>>& points) {
+        // 1. greedy search
+        // Time complexity:		O(N)
+        // Space complexity:	O(1)
+        int time = 0;
+        for (size_t i = 0; i < points.size() - 1; ++i) {
+            time += std::max(std::abs(points[i + 1][1] - points[i][1]), std::abs(points[i + 1][0] - points[i][0]));
+        }
+        return time;
+    }
 };
 
 /*

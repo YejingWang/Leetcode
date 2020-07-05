@@ -37,47 +37,47 @@ nums.length % 2 == 0
 
 class Solution {
 public:
-	std::vector<int> decompressRLElist(std::vector<int>& nums) {
-		std::vector<int> res;
+    std::vector<int> decompressRLElist(std::vector<int>& nums) {
+        std::vector<int> res;
 
-		// 1.use push_back
-		// Time complexity:     O(N)
-		// Space complexity:    O(1)
-		/*std::vector<int> res;
-		for (size_t i = 0; i < nums.size(); i+=2) {
-			for (size_t j = 0; j < nums[i]; ++j) {
-				res.push_back(nums[i+1]);
-			}
-		}*/
+        // 1.use push_back
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*std::vector<int> res;
+        for (size_t i = 0; i < nums.size(); i+=2) {
+            for (size_t j = 0; j < nums[i]; ++j) {
+                res.push_back(nums[i+1]);
+            }
+        }*/
 
-		// 2.use insert
-		// Time complexity:     O(N)
-		// Space complexity:    O(1)
-		/*for (size_t i = 0; i < nums.size(); i+=2) {
-			res.insert(res.end(), nums[i], nums[i+1]);
-		}*/
+        // 2.use insert
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*for (size_t i = 0; i < nums.size(); i+=2) {
+            res.insert(res.end(), nums[i], nums[i+1]);
+        }*/
 
-		//3.preallocation
-		// Time complexity:     O(N)
-		// Space complexity:    O(1)
-		int sz = 0;
-		for (size_t i = 0; i < nums.size(); i += 2) {
-			sz += nums[i] * nums[i + 1];
-		}
-		res.reserve(sz);
+        //3.preallocation
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        int sz = 0;
+        for (size_t i = 0; i < nums.size(); i += 2) {
+            sz += nums[i] * nums[i + 1];
+        }
+        res.reserve(sz);
 
-		for (size_t i = 0; i < nums.size(); i += 2) {
-			for (int j = nums[i]; j > 0; --j) {
-				res.push_back(nums[i + 1]);
-			}
-		}
+        for (size_t i = 0; i < nums.size(); i += 2) {
+            for (int j = nums[i]; j > 0; --j) {
+                res.push_back(nums[i + 1]);
+            }
+        }
 
-		return res;
-	}
+        return res;
+    }
 };
 
 /*
 Tips:
-	1.std::vector.insert(pos, n, val)
-	2.std::vector.reserve() only changes the capacity() (not the size()) of the vector 
+    1.std::vector.insert(pos, n, val)
+    2.std::vector.reserve() only changes the capacity() (not the size()) of the vector 
 */
