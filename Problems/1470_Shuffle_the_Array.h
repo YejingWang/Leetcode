@@ -39,7 +39,7 @@ public:
     std::vector<int> shuffle(std::vector<int>& nums, int n) {
         // 1.Straightforward
         // Time complexity:     O(N)
-        // Space complexity:    o(1)
+        // Space complexity:    O(1)
         std::vector<int> res(2 * n);
         for (size_t i = 0; i < n; ++i) {
             res[2 * i] = nums[i];
