@@ -30,7 +30,7 @@ public:
 
         // 1.Brute force
         // Time complexity:     O(N^2)
-        // Space complexity:    o(1)
+        // Space complexity:    O(1)
         /*for (size_t i = 0; i < nums.size() - 1; ++i) {
             for (size_t j = i + 1; j < nums.size(); ++j) {
                 if (nums[i] + nums[j] == target) {
