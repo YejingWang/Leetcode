@@ -42,7 +42,6 @@ s consists of uppercase and lowercase letters.
 
 #include <string>
 #include <unordered_set>
-#include <algorithm>
 
 class Solution {
 public:
