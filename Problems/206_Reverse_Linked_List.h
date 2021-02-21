@@ -1,102 +1,87 @@
 #pragma once
 
-/* 
-1. Two Sum
-https://leetcode.com/problems/two-sum/
+/*
+206. Reverse Linked List
+https://leetcode.com/problems/reverse-linked-list/
 
-Given an array of integers, return indices of the two numbers such that they add up to a specific target.
-
-You may assume that each input would have exactly one solution, and you may not use the same element twice.
+Reverse a singly linked list.
 
 Example:
 
-Given nums = [2, 7, 11, 15], target = 9,
+Input: 1->2->3->4->5->NULL
+Output: 5->4->3->2->1->NULL
+Follow up:
 
-Because nums[0] + nums[1] = 2 + 7 = 9,
-return [0, 1].
+A linked list can be reversed either iteratively or recursively. Could you implement both?
 */
 
 #include <vector>
-#include <map>
-#include <unordered_map>
-#include <algorithm>
+
+// Definition for singly - linked list.
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode() : val(0), next(nullptr) {}
+    ListNode(int x) : val(x), next(nullptr) {}
+    ListNode(int x, ListNode *next) : val(x), next(next) {}
+};
 
 class Solution {
 public:
-    std::vector<int> twoSum(std::vector<int>& nums, int target) {
-        // Solution 2 performs the best both in time complexity and space complexity...
-        // 4 comes closely after it; 3 is moderately worse
-        std::vector<int> res;
+    ListNode* reverseList(ListNode* head) {
+        // 1. Store to a vector
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::vector<int> vec;
+        ListNode* tmp = head;
+        while (tmp) {
+            vec.push_back(tmp->val);
+            tmp = tmp->next;
+        }
+        tmp = head;
+        int pos = vec.size() - 1;
+        while (tmp) {
+            tmp->val = vec[pos--];
+            tmp = tmp->next;
+        }
+        return head;*/
 
-        // 1.Brute force
-        // Time complexity:     O(N^2)
+        // 2. Iterative approach
+        // Time complexity:     O(N)
         // Space complexity:    O(1)
-        /*for (size_t i = 0; i < nums.size() - 1; ++i) {
-            for (size_t j = i + 1; j < nums.size(); ++j) {
-                if (nums[i] + nums[j] == target) {
-                    res.push_back(i);
-                    res.push_back(j);
-                    return res;
-                }
-            }
+        /*ListNode* prev = nullptr;
+        ListNode* post = head;
+        while (post) {
+            ListNode* tmp = post->next;
+            post->next = prev;
+            prev = post;
+            post = tmp;
         }
-        return res*/
+        return prev;*/
 
-        // 2.Sort + 2 pointers
-        // Time complexity:     O(NlogN)
-        // Space complexity:    O(N)
-        /*std::vector<int> tmp(nums.begin(), nums.end());
-        std::sort(tmp.begin(), tmp.end());
-        int pre = 0, post = nums.size() - 1;
-        while (pre < post) {
-            if (tmp[pre] + tmp[post] < target) {
-                ++pre;
-            }
-            else if (tmp[pre] + tmp[post] > target) {
-                --post;
-            }
-            else {
-                break;
-            }
+        // 3. Iterative approach with virtual header
+        // Time complexity:     O(N)
+        // Space complexity:    O(1)
+        /*ListNode* prev = new ListNode(0, head);
+        ListNode* post = head;
+        while (post && post->next) {
+            ListNode* tmp = prev->next;
+            prev->next = post->next;
+            post->next = post->next->next;
+            prev->next->next = tmp;
         }
-        for (size_t i = 0; i < nums.size(); ++i) {
-            if (nums[i] == tmp[pre]) {
-                res.push_back(i);
-            }
-            else if (nums[i] == tmp[post]) {
-                res.push_back(i);
-            }
-        }
-        return res;*/
+        return prev->next;*/
 
-        // 3.Uses map (two-pass)
+        // 4. Recursive approach
         // Time complexity:     O(N)
         // Space complexity:    O(N)
-        /*std::map<int, int> mp;
-        for (size_t i = 0; i < nums.size(); ++i) {
-            mp[target - nums[i]] = i;
+        if (!head || !head->next) {
+            return head;
         }
-
-        for (size_t i = 0; i < nums.size(); ++i) {
-            if (mp.find(nums[i]) != mp.end() && mp[nums[i]] != i) {
-                res.push_back(i);
-                res.push_back(mp[nums[i]]);
-                break;
-            }
-        }
-        return res;*/
-
-        // 4.Better map usage (one-pass)
-        // Time complexity:     O(N)
-        // Space complexity:    O(N)
-        std::unordered_map<int, int> ump;
-        for (int i = 0; i < nums.size(); ++i) {
-            if (ump.find(target - nums[i]) != ump.end()) {
-                return std::vector<int>{i, ump[target - nums[i]]};
-            }
-            ump[nums[i]] = i;
-        }
-        return std::vector<int>{};
+        ListNode* node = reverseList(head->next);
+        head->next->next = head;
+        head->next = nullptr;
+        return node;
     }
 };
 
