@@ -127,4 +127,5 @@ public:
 /*
 Tips:
     1. Inversion can be used to find an element that occurs twice
+    2. 
 */

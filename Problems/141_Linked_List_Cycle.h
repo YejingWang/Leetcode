@@ -50,9 +50,15 @@ Follow up: Can you solve it using O(1) (i.e. constant) memory?
 
 #include <unordered_set>
 
+struct ListNode {
+    int val;
+    ListNode *next;
+    ListNode(int x) : val(x), next(NULL) {}
+};
+
 class Solution {
 public:
-    std::vector<int> twoSum(std::vector<int>& nums, int target) {
+    bool hasCycle(ListNode *head) {
         // 1. Hast table
         // Time complexity:     O(N)
         // Space complexity:    O(N)
