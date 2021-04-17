@@ -61,12 +61,21 @@ struct TreeNode {
 };
 
 class Solution {
+private:
+    TreeNode* increasingbst(TreeNode* root, TreeNode* next = nullptr) {
+        if (!root) return next;
+        TreeNode* res = increasingbst(root->left, root);
+        root->left = nullptr;
+        root->right = increasingbst(root->right, next);
+        return res;
+    }
+
 public:
     TreeNode* increasingBST(TreeNode* root) {
-        // 1. Iterative approach
+        // 1. Iterative level traversal
         // Time complexity:     O(N) ?
         // Space complexity:    O(N)
-        TreeNode* bst = new TreeNode(-1);
+        /*TreeNode* bst = new TreeNode(-1);
         TreeNode* pBst = nullptr;
         TreeNode* prevPBst = nullptr;
         std::queue<TreeNode*> q;
@@ -97,7 +106,38 @@ public:
                 q.push(front->right);
             }
         }
-        return bst->right;
+        return bst->right;*/
+
+        // 2. Iterative in-order traversal
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*TreeNode* dummy = new TreeNode(0);
+        TreeNode* newTree = dummy;
+        std::stack<TreeNode*> s;
+        while (true) {
+            if (root) {
+                s.push(root);
+                root = root->left;
+            }
+            else if (!s.empty()) {
+                root = s.top();
+                s.pop();
+                TreeNode* tmp = new TreeNode(root->val);
+                newTree->right = tmp;
+                newTree = tmp;
+                root = root->right;
+            }
+            else {
+                break;
+            }
+        }
+        return dummy->right;*/
+
+        // 3. Recursive in-order traversal
+        // Time complexity:     O(N)
+        // Space complexity:    O(H)
+        return increasingbst(root);
+
     }
 };
 
