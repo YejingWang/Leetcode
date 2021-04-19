@@ -129,9 +129,11 @@ public:
             }
         }
         return res;
+    }
 };
 
 /*
 Tips:
     1. Postorder traversal goes in order L-R-V, which is equivalent to a traversal in order V-R-L with a reversal
+    2. In approach 3 we use an extra int to keep track of the number of children of the nodes that have been visited
 */

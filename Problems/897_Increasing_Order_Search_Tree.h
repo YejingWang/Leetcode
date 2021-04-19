@@ -137,7 +137,6 @@ public:
         // Time complexity:     O(N)
         // Space complexity:    O(H)
         return increasingbst(root);
-
     }
 };
 
