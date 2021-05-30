@@ -57,8 +57,28 @@ The input graph is guaranteed to be a DAG.
 
 class Solution {
 public:
-    std::vector<std::vector<int>> allPathsSourceTarget(std::vector<std::vector<int>>& graph) {
+    void dfs(const std::vector<std::vector<int>>& graph, std::vector<int>& path,
+        std::vector<std::vector<int>>& paths, int cur) {
+        path.push_back(cur);
+        if (cur == graph.size() - 1) {
+            paths.push_back(path);
+        }
+        else {
+            for (int current : graph[cur]) {
+                dfs(graph, path, paths, current);
+            }
+        }
+        path.pop_back();
+    }
 
+    std::vector<std::vector<int>> allPathsSourceTarget(std::vector<std::vector<int>>& graph) {
+        // 1. Iterative DFS
+        // Time complexity:     O(2^N)
+        // Space complexity:    O(E)
+        std::vector<int> path;
+        std::vector<std::vector<int>> paths;
+        dfs(graph, path, paths, 0);
+        return paths;
     }
 };
 
