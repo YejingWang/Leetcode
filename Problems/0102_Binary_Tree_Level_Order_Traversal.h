@@ -87,7 +87,7 @@ public:
     }
 
     std::vector<std::vector<int>> levelOrder(TreeNode* root) {
-        // 1. Iteration (BFS)
+        // 1. Iteration with while loop (BFS)
         // Time complexity:     O(N)
         // Space complexity:    O(N)
         /*std::vector<std::vector<int>> v;
@@ -113,7 +113,28 @@ public:
         }
         return v;*/
 
-        // 2. Recursion (DFS)
+        // 2. Iteration with for loop (BFS)
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::vector<std::vector<int>> v;
+        if (!root) return v;
+        std::queue<TreeNode*> q;
+        q.push(root);
+        while (!q.empty()) {
+            int s = q.size();
+            std::vector<int> lv(s);
+            for (int i = 0; i < s; ++i) {
+                auto t = q.front();
+                q.pop();
+                lv[i] = t->val;
+                if (t->left) q.push(t->left);
+                if (t->right) q.push(t->right);
+            }
+            v.push_back(lv);
+        }
+        return v;*/
+
+        // 3. Recursion (DFS)
         // Time complexity:     O(N)
         // Space complexity:    O(lgN), worst case O(N)
         /*std::vector<std::vector<int>> v;
@@ -121,7 +142,7 @@ public:
         levelorder(root, 1, v);
         return v;*/
 
-        // 3. Iteration with two queues
+        // 4. Iteration with two queues
         // Time complexity:     O(N)
         // Space complexity:    O(N)
         std::vector<std::vector<int>> v;
