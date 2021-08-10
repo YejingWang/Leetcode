@@ -110,7 +110,7 @@ public:
 
         // 2. Iterative in-order traversal
         // Time complexity:     O(N)
-        // Space complexity:    O(N)
+        // Space complexity:    O(H)
         /*TreeNode* dummy = new TreeNode(0);
         TreeNode* newTree = dummy;
         std::stack<TreeNode*> s;
