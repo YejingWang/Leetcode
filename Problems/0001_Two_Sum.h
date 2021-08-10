@@ -28,7 +28,7 @@ public:
         // 4 comes closely after it; 3 is moderately worse
         std::vector<int> res;
 
-        // 1.Brute force
+        // 1. Brute force
         // Time complexity:     O(N^2)
         // Space complexity:    O(1)
         /*for (size_t i = 0; i < nums.size() - 1; ++i) {
@@ -42,7 +42,7 @@ public:
         }
         return res*/
 
-        // 2.Sort + 2 pointers
+        // 2. Sort + 2 pointers
         // Time complexity:     O(NlogN)
         // Space complexity:    O(N)
         /*std::vector<int> tmp(nums.begin(), nums.end());
@@ -69,7 +69,7 @@ public:
         }
         return res;*/
 
-        // 3.Uses map (two-pass)
+        // 3. Uses map (two-pass)
         // Time complexity:     O(N)
         // Space complexity:    O(N)
         /*std::map<int, int> mp;
@@ -86,7 +86,7 @@ public:
         }
         return res;*/
 
-        // 4.Better map usage (one-pass)
+        // 4. Better map usage (one-pass)
         // Time complexity:     O(N)
         // Space complexity:    O(N)
         std::unordered_map<int, int> ump;

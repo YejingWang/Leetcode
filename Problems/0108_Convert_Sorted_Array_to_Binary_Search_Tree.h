@@ -53,13 +53,12 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode* convert(const std::vector<int>& nums, const int begin, const int end) {
-        if (begin >= end) return nullptr;
-        TreeNode* root = new TreeNode();
-        int mid = begin + (end - begin) / 2;
-        root->val = nums[mid];
-        root->left = convert(nums, begin, mid);
-        root->right = convert(nums, mid + 1, end);
+    TreeNode* convert(const std::vector<int>& nums, const int lo, const int hi) {
+        if (lo >= hi) return nullptr;
+        int mid = lo + (hi - lo) / 2;
+        TreeNode* root = new TreeNode(nums[mid]);
+        root->left = convert(nums, lo, mid);
+        root->right = convert(nums, mid + 1, hi);
         return root;
     }
 
