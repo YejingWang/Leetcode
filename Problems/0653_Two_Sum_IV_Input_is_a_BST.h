@@ -67,7 +67,42 @@ struct TreeNode {
 class Solution {
 public:
     bool findTarget(TreeNode* root, int k) {
-        // 1. unordered_set
+        // 1. Store in a vector and use two pointers
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::vector<int> v;
+        std::stack<TreeNode*> s;
+        while (true) {
+            if (root) {
+                s.push(root);
+                root = root->left;
+            }
+            else if (!s.empty()) {
+                auto t = s.top();
+                s.pop();
+                v.push_back(t->val);
+                root = t->right;
+            }
+            else {
+                break;
+            }
+        }
+        int i = 0;
+        int j = v.size() - 1;
+        while (i < j) {
+            if (v[i] + v[j] > k) {
+                --j;
+            }
+            else if (v[i] + v[j] < k) {
+                ++i;
+            }
+            else {
+                return true;
+            }
+        }
+        return false;*/
+
+        // 2. unordered_set
         // Time complexity:     O(N)
         // Space complexity:    O(H)
         if (!root) return false;
