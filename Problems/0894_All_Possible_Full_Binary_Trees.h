@@ -50,11 +50,82 @@ struct TreeNode {
 
 class Solution {
 public:
+    void fbt(std::vector<TreeNode*>& v, int n) {
+        if (n == 1) {
+            TreeNode* root = new TreeNode(0);
+            v.push_back(root);
+            return;
+        }
+        for (int i = 1; i < n; i += 2) {
+            std::vector<TreeNode*> lv, rv;
+            fbt(lv, i);
+            fbt(rv, n - i - 1);
+            for (size_t l = 0; l < lv.size(); ++l) {
+                for (size_t r = 0; r < rv.size(); ++r) {
+                    TreeNode* root = new TreeNode(0, lv[l], rv[r]);
+                    v.push_back(root);
+                }
+            }
+        }
+    }
+
+    void fbtDP(std::vector<TreeNode*>& v, int n, std::vector<std::vector<TreeNode*>>& dp) {
+        if (dp[n - 1].size() != 0) {
+            v = dp[n];
+            return;
+        }
+        if (n == 1) {
+            TreeNode* root = new TreeNode(0);
+            v.push_back(root);
+            return;
+        }
+        for (int i = 1; i < n; i += 2) {
+            std::vector<TreeNode*> lv, rv;
+            if (dp[i - 1].size() != 0) {
+                lv = dp[i - 1];
+            }
+            else {
+                fbt(lv, i);
+                dp[i - 1] = lv;
+            }
+            if (dp[n - i - 2].size() != 0) {
+                rv = dp[n - i - 2];
+            }
+            else {
+                fbt(rv, n - i - 1);
+                dp[n - i - 2] = rv;
+            }
+            for (size_t l = 0; l < lv.size(); ++l) {
+                for (size_t r = 0; r < rv.size(); ++r) {
+                    TreeNode* root = new TreeNode(0, lv[l], rv[r]);
+                    v.push_back(root);
+                }
+            }
+        }
+    }
+
     std::vector<TreeNode*> allPossibleFBT(int n) {
-        // 1. Dynamic programming
+        // 1. Recursion
+        // Time complexity:     O(2^N) ?
+        // Space complexity:    O(2^N) ?
+        /*if (n % 2 == 0) return std::vector<TreeNode*>{};
+        std::vector<TreeNode*> v;
+        fbt(v, n);
+        return v;*/
+
+        // 2. Recursion with memoization
         // Time complexity:     O(2^N) ?
         // Space complexity:    O(2^N) ?
         if (n % 2 == 0) return std::vector<TreeNode*>{};
+        std::vector<TreeNode*> v;
+        std::vector<std::vector<TreeNode*>> dp(n);
+        fbtDP(v, n, dp);
+        return v;
+
+        // 2. Dynamic programming
+        // Time complexity:     O(2^N) ?
+        // Space complexity:    O(2^N) ?
+        /*if (n % 2 == 0) return std::vector<TreeNode*>{};
         std::vector<std::vector<TreeNode*>> v(n);
         for (int i = 0; i < n; i += 2) {
             if (i == 0) {
@@ -73,9 +144,8 @@ public:
                     }
                 }
             }
-
         }
-        return v.back();
+        return v.back();*/
     }
 };
 
