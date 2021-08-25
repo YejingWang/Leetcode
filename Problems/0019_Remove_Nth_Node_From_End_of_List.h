@@ -11,21 +11,19 @@ Follow up: Could you do this in one pass?
 
 
 Example 1:
-
 1 -----> 2 -----> 3 -----> 4 -----> 5
                  ||
                  ||
                  \/
 1 -----> 2 -----> 3 --------------> 5
-
 Input: head = [1,2,3,4,5], n = 2
 Output: [1,2,3,5]
-Example 2:
 
+Example 2:
 Input: head = [1], n = 1
 Output: []
-Example 3:
 
+Example 3:
 Input: head = [1,2], n = 1
 Output: [1]
 

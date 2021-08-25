@@ -9,21 +9,19 @@ Given a linked list, swap every two adjacent nodes and return its head.
 
 
 Example 1:
-
 1 -----> 2 -----> 3 -----> 4
             ||
             ||
             \/
 2 -----> 1 -----> 4 -----> 3
-
 Input: head = [1,2,3,4]
 Output: [2,1,4,3]
-Example 2:
 
+Example 2:
 Input: head = []
 Output: []
-Example 3:
 
+Example 3:
 Input: head = [1]
 Output: [1]
 

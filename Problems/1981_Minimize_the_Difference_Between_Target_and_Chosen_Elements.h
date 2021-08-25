@@ -67,14 +67,29 @@ n == mat[i].length
 
 #include <vector>
 #include <stack>
+#include <set>
+#include <algorithm>
+#include <unordered_set>
 
 class Solution {
 public:
+    int dfs(int i, int sum, int target, std::vector<std::set<int>>& m, std::vector<std::vector<int>>& dp) {
+        if (i >= m.size()) return std::abs(sum - target);
+        if (dp[i][sum] == std::numeric_limits<int>::max()) {
+            for (auto it = m[i].begin(); it != m[i].end(); ++it) {
+                dp[i][sum] = std::min(dp[i][sum], dfs(i + 1, sum + *it, target, m, dp));
+                if (dp[i][sum] == 0 || sum + *it > target)
+                    break;
+            }
+        }
+        return dp[i][sum];
+    }
+
     int minimizeTheDifference(std::vector<std::vector<int>>& mat, int target) {
         // 1. Brute force with DFS (TLE)
         // Time complexity:     O(N^M)
         // Space complexity:    O(1)
-        int res = std::numeric_limits<int>::max();
+        /*int res = std::numeric_limits<int>::max();
         int height = mat.size();
         int width = mat[0].size();
         std::stack<std::pair<int, int>> s;
@@ -96,10 +111,46 @@ public:
                 }
             }
         }
+        return res;*/
+
+        // 2. Recursion
+        // Time complexity:     O(N^M)
+        // Space complexity:    O(1)
+        /*std::vector<std::set<int>> m;
+        for (auto& row : mat) {
+            m.push_back(std::set<int>(row.begin(), row.end()));
+        }
+        std::vector<std::vector<int>> dp(71, std::vector<int>(4901, std::numeric_limits<int>::max()));
+        return dfs(0, 0, target, m, dp);*/
+
+        // 3. Use bit array for memoization
+        // Time complexity:     O(MN)
+        // Space complexity:    O(1)
+        bool bt[70 * 70 + 1] = {};
+        int max_e = 0, res = std::numeric_limits<int>::max();
+        for (auto& row : mat) {
+            bool bt1[70 * 70 + 1] = {};
+            int max_e1 = 0;
+            for (auto i : std::unordered_set<int>(row.begin(), row.end())) {
+                for (int j = 0; j <= max_e; ++j) {
+                    if (j == max_e || bt[j]) {
+                        bt1[i + j] = true;
+                        max_e1 = std::max(max_e1, i + j);
+                    }
+                }
+            }
+            std::swap(bt, bt1);
+            max_e = max_e1;
+        }
+        for (int i = 0; i <= 70 * 70; ++i) {
+            if (bt[i])
+                res = std::min(res, std::abs(i - target));
+        }
         return res;
     }
 };
 
 /*
 Tips:
+    2. The space complexity of solution 2 and 3 is O(1) since the upper bound of the problem is given
 */
