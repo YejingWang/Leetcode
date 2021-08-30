@@ -122,7 +122,7 @@ public:
         fbtDP(v, n, dp);
         return v;
 
-        // 2. Dynamic programming
+        // 3. Dynamic programming
         // Time complexity:     O(2^N) ?
         // Space complexity:    O(2^N) ?
         /*if (n % 2 == 0) return std::vector<TreeNode*>{};
