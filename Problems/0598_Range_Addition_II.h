@@ -46,8 +46,8 @@ class Solution {
 public:
     int maxCount(int m, int n, std::vector<std::vector<int>>& ops) {
         // 1. Find minima
-        // Time complexity:     O(N)
-        // Space complexity:    O(H)
+        // Time complexity:     O(MN)
+        // Space complexity:    O(1)
         int mMin = m, nMin = n;
         for (auto& v : ops) {
             mMin = v[0] < mMin ? v[0] : mMin;
