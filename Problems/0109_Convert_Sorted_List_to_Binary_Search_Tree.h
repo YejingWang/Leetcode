@@ -47,6 +47,8 @@ The number of nodes in head is in the range [0, 2 * 104].
 -10^5 <= Node.val <= 10^5
 */
 
+#include <vector>
+
 // Definition for singly - linked list.
 struct ListNode {
     int val;
@@ -68,33 +70,45 @@ struct TreeNode {
 
 class Solution {
 public:
-    TreeNode* sortedListToBST(ListNode* head) {
-        // NOT ACCEPTED
-        // 1. Two pass
-        // Time complexity:     O(N)
-        // Space complexity:    O(1)
-        int size = 0;
-        ListNode* pHead = head;
-        while (pHead) {
-            ++size;
-            pHead = pHead->next;
+    TreeNode* toBST(std::vector<int>& v, int lo, int hi) {
+        if (lo >= hi) {
+            return nullptr;
         }
-        int cnt = 0;
-        TreeNode* root = nullptr;
-        TreeNode* prevNode = nullptr;
+        int mid = lo + (hi - lo) / 2;
+        TreeNode* root = new TreeNode(v[mid], toBST(v, lo, mid), toBST(v, mid + 1, hi));
+        return root;
+    }
+
+    TreeNode* sortedListToBST(ListNode* head) {
+        // 1. Convert the sorted list to a sorted vector
+        // Time complexity:     O(N)
+        // Space complexity:    O(N)
+        /*std::vector<int> v;
         while (head) {
-            TreeNode* newNode = new TreeNode(head->val);
-            if (cnt <= size / 2) {
-                newNode->left = prevNode;
-                root = cnt == size / 2 ? newNode : nullptr;
-            }
-            else {
-                prevNode->right = newNode;
-            }
-            prevNode = newNode;
-            ++cnt;
+            v.push_back(head->val);
             head = head->next;
         }
+        return toBST(v, 0, v.size());*/
+
+        // 2. Recursion with two pointers
+        // Time complexity:     O(NlgN)
+        // Space complexity:    O(lgN)
+        if (!head) return nullptr;
+        ListNode* fast = head;
+        ListNode* slow = head;
+        ListNode* prevSlow = nullptr;
+        while (fast && fast->next) {
+            prevSlow = slow;
+            slow = slow->next;
+            fast = fast->next->next;
+        }
+        if (prevSlow) {
+            prevSlow->next = nullptr;
+        }
+        else {
+            head = nullptr;
+        }
+        TreeNode* root = new TreeNode(slow->val, sortedListToBST(head), sortedListToBST(slow->next));
         return root;
     }
 };
